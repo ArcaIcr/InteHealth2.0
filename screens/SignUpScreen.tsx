@@ -1,7 +1,23 @@
-import { View, Text } from 'react-native';
+import { SignUpPage } from '../components/signup/SignUpPage';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-export const SignUpScreen = () => (
-  <View className="flex-1 justify-center items-center">
-    <Text className="text-2xl font-bold">Sign Up Screen</Text>
-  </View>
-); 
+export type RootStackParamList = {
+  Landing: undefined;
+  Login: undefined;
+  SignUp: undefined;
+};
+
+export const SignUpScreen = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+  return (
+    <SignUpPage
+      onLogin={() => navigation.navigate('Login')}
+      onCreateAccount={(data) => {
+        // TODO: Implement create account logic
+        console.log('Create account with', data);
+      }}
+    />
+  );
+}; 
